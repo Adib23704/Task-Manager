@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum TaskStatus {
+  PENDING
+  PROCESSING
+  DONE
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  assignedTasks Task[]     @relation("AssignedTasks")
+  auditLogs     AuditLog[] @relation("ActorLogs")
+
+  @@map("users")
+}
+
+model Task {
+  id             String     @id @default(uuid())
+  title          String
+  description    String
+  status         TaskStatus @default(PENDING)
+  assignedUserId String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  assignee  User?      @relation("AssignedTasks", fields: [assignedUserId], references: [id])
+  auditLogs AuditLog[] @relation("TaskLogs")
+
+  @@map("tasks")
+}
+
+model AuditLog {
+  id             String   @id @default(uuid())
+  actorId        String
+  action         String
+  targetEntityId String
+  details        Json
+  createdAt      DateTime @default(now())
+
+  actor      User @relation("ActorLogs", fields: [actorId], references: [id])
+  targetTask Task @relation("TaskLogs", fields: [targetEntityId], references: [id], onDelete: Cascade)
+
+  @@map("audit_logs")
+}
