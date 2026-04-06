@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:24-alpine
 
 WORKDIR /app
 
@@ -7,12 +7,11 @@ RUN npm ci
 
 COPY . .
 
-# Prisma needs a placeholder URL at generate time
+# Prisma needs a placeholder URL at generate time, but it will be overridden by the actual DATABASE_URL at runtime
 ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder"
 RUN npx prisma generate
 RUN npm run build
 
-COPY entrypoint.sh ./
 RUN chmod +x entrypoint.sh
 
 EXPOSE 4000
