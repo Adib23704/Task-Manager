@@ -52,12 +52,12 @@ model AuditLog {
   id             String   @id @default(uuid())
   actorId        String
   action         String
-  targetEntityId String
+  targetEntityId String?
   details        Json
   createdAt      DateTime @default(now())
 
-  actor      User @relation("ActorLogs", fields: [actorId], references: [id])
-  targetTask Task @relation("TaskLogs", fields: [targetEntityId], references: [id], onDelete: Cascade)
+  actor      User  @relation("ActorLogs", fields: [actorId], references: [id])
+  targetTask Task? @relation("TaskLogs", fields: [targetEntityId], references: [id], onDelete: SetNull)
 
   @@map("audit_logs")
 }

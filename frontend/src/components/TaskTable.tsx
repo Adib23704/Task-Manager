@@ -45,7 +45,7 @@ export default function TaskTable({ tasks, onEdit, onRefresh }: Props) {
           {tasks.map((task) => (
             <tr key={task.id} className="border-b border-gray-100 last:border-0">
               <td className="px-4 py-3 text-gray-900">{task.title}</td>
-              <td className="px-4 py-3 text-gray-500">{task.assignee?.name || "—"}</td>
+              <td className="px-4 py-3 text-gray-500">{task.assignee?.name || "Unassigned"}</td>
               <td className="px-4 py-3">
                 <StatusBadge status={task.status} />
               </td>

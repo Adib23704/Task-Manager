@@ -11,6 +11,15 @@ export class TasksService {
     private auditLogs: AuditLogsService,
   ) {}
 
+  private async getUserName(userId: string | null): Promise<string> {
+    if (!userId) return "Unassigned";
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      select: { name: true },
+    });
+    return user?.name || "Unknown";
+  }
+
   async findAll(userId: string, role: string) {
     if (role === "ADMIN") {
       return this.prisma.task.findMany({
@@ -74,25 +83,30 @@ export class TasksService {
     }
 
     if (dto.assignedUserId !== undefined && dto.assignedUserId !== existing.assignedUserId) {
+      const fromName = await this.getUserName(existing.assignedUserId);
+      const toName = await this.getUserName(dto.assignedUserId);
+
       await this.auditLogs.log({
         actorId,
         action: "TASK_ASSIGNED",
         targetEntityId: id,
-        details: {
-          previousAssignee: existing.assignedUserId,
-          newAssignee: dto.assignedUserId,
-        },
+        details: { from: fromName, to: toName },
       });
     }
 
     const titleChanged = dto.title !== undefined && dto.title !== existing.title;
     const descChanged = dto.description !== undefined && dto.description !== existing.description;
     if (titleChanged || descChanged) {
+      const changedFields: string[] = [];
+      if (titleChanged) changedFields.push("title");
+      if (descChanged) changedFields.push("description");
+
       await this.auditLogs.log({
         actorId,
         action: "TASK_UPDATED",
         targetEntityId: id,
         details: {
+          fields: changedFields,
           before: { title: existing.title, description: existing.description },
           after: { title: updated.title, description: updated.description },
         },
@@ -122,6 +136,9 @@ export class TasksService {
     const task = await this.prisma.task.findUnique({ where: { id } });
     if (!task) throw new NotFoundException("Task not found");
 
+    const fromName = await this.getUserName(task.assignedUserId);
+    const toName = await this.getUserName(assignedUserId);
+
     const updated = await this.prisma.task.update({
       where: { id },
       data: { assignedUserId },
@@ -131,10 +148,7 @@ export class TasksService {
       actorId,
       action: "TASK_ASSIGNED",
       targetEntityId: id,
-      details: {
-        previousAssignee: task.assignedUserId,
-        newAssignee: assignedUserId,
-      },
+      details: { from: fromName, to: toName },
     });
 
     return updated;

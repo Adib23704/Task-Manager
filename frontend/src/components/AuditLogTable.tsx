@@ -19,11 +19,13 @@ function describeAction(action: string, details: Record<string, any>): string {
     case "TASK_DELETED":
       return `Deleted "${details.title}"`;
     case "STATUS_CHANGED":
-      return `${details.from} → ${details.to}`;
+      return `${details.from} -> ${details.to}`;
     case "TASK_ASSIGNED":
-      return "Reassigned task";
-    case "TASK_UPDATED":
-      return `Updated "${details.after?.title || "task"}"`;
+      return `${details.from} -> ${details.to}`;
+    case "TASK_UPDATED": {
+      const fields = details.fields?.join(", ") || "task";
+      return `Updated ${fields} of "${details.after?.title || "task"}"`;
+    }
     default:
       return JSON.stringify(details);
   }
