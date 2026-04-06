@@ -37,7 +37,7 @@ export default function TaskModal({ task, users, onClose, onSaved }: Props) {
       const body = {
         title,
         description,
-        assignedUserId: assignedUserId || undefined,
+        assignedUserId: assignedUserId || null,
       };
 
       if (isEditing) {
