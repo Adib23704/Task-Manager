@@ -2,6 +2,8 @@
 
 A task management system with role-based access control (Admin/User) and audit logging, built as a fullstack application.
 
+**Live:** [task.adibdev.me](https://task.adibdev.me) (Frontend) | [task-api.adibdev.me](https://task-api.adibdev.me) (Backend API)
+
 ## Tech Stack
 
 | Layer | Technology |
