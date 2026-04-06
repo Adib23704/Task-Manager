@@ -1,14 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-  Req,
-  UseGuards,
-} from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { Roles, RolesGuard } from "../auth/guards/roles.guard";
 import { CreateTaskDto } from "./dto/create-task.dto";
@@ -32,11 +22,7 @@ export class TasksController {
   }
 
   @Patch(":id")
-  update(
-    @Param("id") id: string,
-    @Body() dto: UpdateTaskDto,
-    @Req() req: any,
-  ) {
+  update(@Param("id") id: string, @Body() dto: UpdateTaskDto, @Req() req: any) {
     return this.tasksService.update(id, dto, req.user.id, req.user.role);
   }
 
@@ -48,11 +34,7 @@ export class TasksController {
 
   @Patch(":id/assign")
   @Roles("ADMIN")
-  assign(
-    @Param("id") id: string,
-    @Body("assignedUserId") assignedUserId: string,
-    @Req() req: any,
-  ) {
+  assign(@Param("id") id: string, @Body("assignedUserId") assignedUserId: string, @Req() req: any) {
     return this.tasksService.assign(id, assignedUserId, req.user.id);
   }
 }

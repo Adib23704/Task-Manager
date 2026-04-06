@@ -78,10 +78,7 @@ export default function TaskModal({ task, users, onClose, onSaved }: Props) {
           )}
 
           <div>
-            <label
-              htmlFor="task-title"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label htmlFor="task-title" className="block text-sm font-medium text-gray-700 mb-1">
               Title
             </label>
             <input
@@ -94,10 +91,7 @@ export default function TaskModal({ task, users, onClose, onSaved }: Props) {
           </div>
 
           <div>
-            <label
-              htmlFor="task-desc"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label htmlFor="task-desc" className="block text-sm font-medium text-gray-700 mb-1">
               Description
             </label>
             <textarea
@@ -111,10 +105,7 @@ export default function TaskModal({ task, users, onClose, onSaved }: Props) {
           </div>
 
           <div>
-            <label
-              htmlFor="task-assignee"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label htmlFor="task-assignee" className="block text-sm font-medium text-gray-700 mb-1">
               Assign To
             </label>
             <select

@@ -17,9 +17,7 @@ export default function AuditLogsPage() {
 
   const fetchLogs = useCallback(async (p: number) => {
     try {
-      const res = await apiFetch<PaginatedResponse<AuditLog>>(
-        `/audit-logs?page=${p}&limit=20`,
-      );
+      const res = await apiFetch<PaginatedResponse<AuditLog>>(`/audit-logs?page=${p}&limit=20`);
       setLogs(res.data);
       setTotalPages(res.totalPages);
     } catch (err) {
@@ -43,9 +41,7 @@ export default function AuditLogsPage() {
       <Sidebar />
 
       <main className="flex-1 p-8">
-        <h1 className="text-xl font-semibold text-gray-900 mb-6">
-          Audit Logs
-        </h1>
+        <h1 className="text-xl font-semibold text-gray-900 mb-6">Audit Logs</h1>
 
         <AuditLogTable logs={logs} />
 

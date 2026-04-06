@@ -35,30 +35,17 @@ export default function TaskTable({ tasks, onEdit, onRefresh }: Props) {
       <table className="w-full text-sm">
         <thead>
           <tr className="bg-gray-50 border-b border-gray-200">
-            <th className="text-left px-4 py-3 font-medium text-gray-600">
-              Title
-            </th>
-            <th className="text-left px-4 py-3 font-medium text-gray-600">
-              Assignee
-            </th>
-            <th className="text-left px-4 py-3 font-medium text-gray-600">
-              Status
-            </th>
-            <th className="text-right px-4 py-3 font-medium text-gray-600">
-              Actions
-            </th>
+            <th className="text-left px-4 py-3 font-medium text-gray-600">Title</th>
+            <th className="text-left px-4 py-3 font-medium text-gray-600">Assignee</th>
+            <th className="text-left px-4 py-3 font-medium text-gray-600">Status</th>
+            <th className="text-right px-4 py-3 font-medium text-gray-600">Actions</th>
           </tr>
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <tr
-              key={task.id}
-              className="border-b border-gray-100 last:border-0"
-            >
+            <tr key={task.id} className="border-b border-gray-100 last:border-0">
               <td className="px-4 py-3 text-gray-900">{task.title}</td>
-              <td className="px-4 py-3 text-gray-500">
-                {task.assignee?.name || "—"}
-              </td>
+              <td className="px-4 py-3 text-gray-500">{task.assignee?.name || "—"}</td>
               <td className="px-4 py-3">
                 <StatusBadge status={task.status} />
               </td>

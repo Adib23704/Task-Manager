@@ -10,11 +10,7 @@ export const metadata: Metadata = {
   description: "Task management system with role-based access",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={geist.className}>
       <body>

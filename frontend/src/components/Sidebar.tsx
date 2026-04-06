@@ -15,9 +15,7 @@ export default function Sidebar() {
 
   if (!user) return null;
 
-  const visibleLinks = navLinks.filter(
-    (link) => !link.adminOnly || user.role === "ADMIN",
-  );
+  const visibleLinks = navLinks.filter((link) => !link.adminOnly || user.role === "ADMIN");
 
   return (
     <aside className="w-56 bg-white border-r border-gray-200 min-h-screen flex flex-col">

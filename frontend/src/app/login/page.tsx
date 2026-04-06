@@ -35,9 +35,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-sm">
-        <h1 className="text-2xl font-semibold text-center mb-6 text-gray-900">
-          Login
-        </h1>
+        <h1 className="text-2xl font-semibold text-center mb-6 text-gray-900">Login</h1>
 
         <form
           onSubmit={handleSubmit}
@@ -50,10 +48,7 @@ export default function LoginPage() {
           )}
 
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Email
             </label>
             <input
@@ -68,10 +63,7 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
               Password
             </label>
             <input
