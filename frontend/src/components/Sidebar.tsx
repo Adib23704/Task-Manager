@@ -6,6 +6,7 @@ import { useAuth } from "@/lib/auth";
 
 const navLinks = [
   { href: "/dashboard", label: "Dashboard", adminOnly: false },
+  { href: "/users", label: "Users", adminOnly: true },
   { href: "/audit-logs", label: "Audit Logs", adminOnly: true },
 ];
 
