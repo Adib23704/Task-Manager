@@ -73,7 +73,7 @@ export class TasksService {
       });
     }
 
-    if (dto.assignedUserId && dto.assignedUserId !== existing.assignedUserId) {
+    if (dto.assignedUserId !== undefined && dto.assignedUserId !== existing.assignedUserId) {
       await this.auditLogs.log({
         actorId,
         action: "TASK_ASSIGNED",
@@ -85,7 +85,9 @@ export class TasksService {
       });
     }
 
-    if (dto.title || dto.description) {
+    const titleChanged = dto.title !== undefined && dto.title !== existing.title;
+    const descChanged = dto.description !== undefined && dto.description !== existing.description;
+    if (titleChanged || descChanged) {
       await this.auditLogs.log({
         actorId,
         action: "TASK_UPDATED",
