@@ -1,7 +1,7 @@
 {
-  "name": "task-management-backend",
+  "name": "task-manager-backend",
   "version": "1.0.0",
-  "description": "NestJS backend for task management system",
+  "private": true,
   "packageManager": "pnpm@10.33.0",
   "scripts": {
     "build": "nest build",
