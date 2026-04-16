@@ -2,6 +2,7 @@
   "name": "task-management-backend",
   "version": "1.0.0",
   "description": "NestJS backend for task management system",
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
     "build": "nest build",
     "start": "nest start",
@@ -17,21 +18,22 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
-    "db:validate": "prisma validate"
+    "db:validate": "prisma validate",
+    "db:deploy": "prisma migrate deploy"
   },
   "dependencies": {
-    "@nestjs/common": "^11.1.18",
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.18",
+    "@nestjs/common": "^11.1.19",
+    "@nestjs/config": "^4.0.4",
+    "@nestjs/core": "^11.1.19",
     "@nestjs/jwt": "^11.0.2",
     "@nestjs/passport": "^11.0.5",
-    "@nestjs/platform-express": "^11.1.18",
-    "@prisma/adapter-pg": "^7.6.0",
-    "@prisma/client": "^7.6.0",
+    "@nestjs/platform-express": "^11.1.19",
+    "@prisma/adapter-pg": "^7.7.0",
+    "@prisma/client": "^7.7.0",
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
-    "dotenv": "^17.4.1",
+    "dotenv": "^17.4.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "pg": "^8.20.0",
@@ -39,13 +41,13 @@
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.10",
-    "@nestjs/cli": "^11.0.17",
+    "@biomejs/biome": "^2.4.12",
+    "@nestjs/cli": "^11.0.21",
     "@types/bcrypt": "^6.0.0",
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.6.0",
     "@types/passport-jwt": "^4.0.1",
-    "prisma": "^7.6.0",
-    "tsx": "^4.19.0",
+    "prisma": "^7.7.0",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.2"
   }
 }

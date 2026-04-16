@@ -2,15 +2,18 @@ FROM node:24-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci
+RUN corepack enable
+RUN corepack prepare pnpm@latest --activate
+
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 
 # Prisma needs a placeholder URL at generate time, but it will be overridden by the actual DATABASE_URL at runtime
 ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder"
-RUN npx prisma generate
-RUN npm run build
+RUN pnpm db:generate
+RUN pnpm build
 
 RUN chmod +x entrypoint.sh
 

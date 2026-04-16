@@ -140,14 +140,14 @@ docker compose up --build
 # Backend
 cd backend
 cp .env.example .env    # set DATABASE_URL and JWT_SECRET
-npm install
-npm run db:generate
-npm run db:migrate
-npm run dev             # http://localhost:4000
+pnpm install
+pnpm db:generate
+pnpm db:migrate
+pnpm dev                # http://localhost:4000
 
 # Frontend (in another terminal)
 cd frontend
 cp .env.example .env    # set NEXT_PUBLIC_API_URL
-npm install
-npm run dev             # http://localhost:3000
+pnpm install
+pnpm dev                # http://localhost:3000
 ```
