@@ -63,12 +63,16 @@ export default function UserModal({ user, onClose, onSaved }: Props) {
     <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md mx-4">
         <div className="px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900">{isEditing ? "Edit User" : "New User"}</h2>
+          <h2 className="text-lg font-semibold text-gray-900">
+            {isEditing ? "Edit User" : "New User"}
+          </h2>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {error && (
-            <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2">{error}</p>
+            <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2">
+              {error}
+            </p>
           )}
 
           <div>
@@ -100,7 +104,10 @@ export default function UserModal({ user, onClose, onSaved }: Props) {
 
           <div>
             <label htmlFor="user-password" className="block text-sm font-medium text-gray-700 mb-1">
-              Password {isEditing && <span className="text-gray-400 font-normal">(leave blank to keep current)</span>}
+              Password{" "}
+              {isEditing && (
+                <span className="text-gray-400 font-normal">(leave blank to keep current)</span>
+              )}
             </label>
             <input
               id="user-password"

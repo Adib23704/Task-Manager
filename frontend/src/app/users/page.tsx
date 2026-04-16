@@ -59,7 +59,10 @@ export default function UsersPage() {
           <h1 className="text-xl font-semibold text-gray-900">Users</h1>
           <button
             type="button"
-            onClick={() => { setEditingUser(null); setModalOpen(true); }}
+            onClick={() => {
+              setEditingUser(null);
+              setModalOpen(true);
+            }}
             className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors cursor-pointer"
           >
             Create User
@@ -85,18 +88,23 @@ export default function UsersPage() {
                     <td className="px-4 py-3 text-gray-900">{u.name}</td>
                     <td className="px-4 py-3 text-gray-500">{u.email}</td>
                     <td className="px-4 py-3">
-                      <span className={`inline-block px-2 py-0.5 rounded border text-xs font-medium ${
-                        u.role === "ADMIN"
-                          ? "bg-purple-50 text-purple-700 border-purple-200"
-                          : "bg-gray-50 text-gray-700 border-gray-200"
-                      }`}>
+                      <span
+                        className={`inline-block px-2 py-0.5 rounded border text-xs font-medium ${
+                          u.role === "ADMIN"
+                            ? "bg-purple-50 text-purple-700 border-purple-200"
+                            : "bg-gray-50 text-gray-700 border-gray-200"
+                        }`}
+                      >
                         {u.role}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-right space-x-3">
                       <button
                         type="button"
-                        onClick={() => { setEditingUser(u); setModalOpen(true); }}
+                        onClick={() => {
+                          setEditingUser(u);
+                          setModalOpen(true);
+                        }}
                         className="text-blue-600 hover:text-blue-800 cursor-pointer"
                       >
                         Edit
@@ -118,11 +126,7 @@ export default function UsersPage() {
         )}
 
         {modalOpen && (
-          <UserModal
-            user={editingUser}
-            onClose={() => setModalOpen(false)}
-            onSaved={fetchUsers}
-          />
+          <UserModal user={editingUser} onClose={() => setModalOpen(false)} onSaved={fetchUsers} />
         )}
       </main>
     </div>

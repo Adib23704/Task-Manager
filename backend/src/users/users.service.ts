@@ -8,7 +8,13 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  private readonly selectFields = { id: true, email: true, name: true, role: true, createdAt: true };
+  private readonly selectFields = {
+    id: true,
+    email: true,
+    name: true,
+    role: true,
+    createdAt: true,
+  };
 
   async findAll() {
     return this.prisma.user.findMany({

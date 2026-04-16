@@ -90,14 +90,20 @@ export default function LoginPage() {
             <div className="flex gap-2">
               <button
                 type="button"
-                onClick={() => { setEmail("admin@example.com"); setPassword("password123"); }}
+                onClick={() => {
+                  setEmail("admin@example.com");
+                  setPassword("password123");
+                }}
                 className="flex-1 text-xs py-1.5 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 cursor-pointer"
               >
                 Admin
               </button>
               <button
                 type="button"
-                onClick={() => { setEmail("user@example.com"); setPassword("password123"); }}
+                onClick={() => {
+                  setEmail("user@example.com");
+                  setPassword("password123");
+                }}
                 className="flex-1 text-xs py-1.5 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 cursor-pointer"
               >
                 User
